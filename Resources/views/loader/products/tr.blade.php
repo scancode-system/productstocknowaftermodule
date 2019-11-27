@@ -1,0 +1,1 @@
+<td class="align-middle">{{ $product_stock_now_after->left_total }} Unidades</td>

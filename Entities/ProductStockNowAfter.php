@@ -26,4 +26,10 @@ class ProductStockNowAfter extends Model
 	}
 
 
+	public function getLeftTotalAttribute()
+	{
+		return $this->left_now+$this->left_after;
+	}
+
+
 }

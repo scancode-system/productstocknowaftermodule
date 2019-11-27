@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\ProductStockNowAfter\Entities\ProductStockNowAfter;
 use Modules\ProductStockNowAfter\Repositories\ProductStockNowAfterRepository;
 use Modules\ProductStockNowAfter\Http\Requests\ProductStockNowAfterRequest;
+use Modules\Product\Entities\Product;
 use \Exception;
 
 class ProductStockNowAfterController extends Controller
@@ -20,6 +21,10 @@ class ProductStockNowAfterController extends Controller
         } catch (Exception $e){
             return back()->withErrors([$e->getMessage()]);
         }
+    }
+
+        public function loadViewProductStockNowAfterAjax(Request $request, Product $product){
+    	return view('productstocknowafter::loader.order.view_product_stock_now_after');
     }
 
 }
