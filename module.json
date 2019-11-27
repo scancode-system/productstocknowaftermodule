@@ -1,0 +1,13 @@
+{
+    "name": "ProductStockNowAfter",
+    "alias": "productstockfuturenowafter",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\ProductStockNowAfter\\Providers\\ProductStockNowAfterServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
