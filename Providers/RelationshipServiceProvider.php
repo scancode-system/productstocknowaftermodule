@@ -10,6 +10,9 @@ use Modules\ProductStockNowAfter\Entities\ProductStockNowAfter;
 use Modules\Order\Entities\Item;
 use Modules\ProductStockNowAfter\Entities\ItemProductStockNowAfter;
 
+use Modules\Order\Entities\Order;
+
+
 class RelationshipServiceProvider extends ServiceProvider
 {
 

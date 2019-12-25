@@ -27,3 +27,4 @@ class InsertPdfLayoutsRecordsProductStockNowAfter extends Migration
        PdfLayoutRepository::deleteByTitle('Estoque Atual e Futuro');
    }
 }
+ 
