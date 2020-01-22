@@ -5,6 +5,7 @@ namespace Modules\ProductStockNowAfter\Http\ViewComposers\Pdf;
 use Modules\Dashboard\Services\ViewComposer\ServiceComposer;
 use Modules\ProductStockNowAfter\Entities\Order;
 
+
 class PdfOrderComposer extends ServiceComposer {
 
     private $order;

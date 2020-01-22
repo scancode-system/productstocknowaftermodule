@@ -2,24 +2,25 @@
 <table class="w-100 mb-3">
 	<thead>
 		<tr>
-			<th  colspan="{{ 10-$count_hidden_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Atual</th>
+			<th  colspan="{{ 6+$count_show_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Atual</th>
 		</tr>
 	</thead>
 	<thead>
 		<tr>
-			@if($setting_pdf->show_item_image)
+			@if($setting_pdf_image->show)
 			<th class="border-bottom border-top border-dark border-left p-2">Img</th>
 			@endif
-			<th class="border-bottom border-top border-dark {{ (!$setting_pdf->show_item_image)?'border-left':'' }} p-2">Ref</th>
+			<th class="border-bottom border-top border-dark {{ (!$setting_pdf_image->show)?'border-left':'' }} p-2">Ref</th>
 			<th class="border-bottom border-top border-dark p-2">Descrição</th>
+			@loader(['loader_path' => 'pdf.items.thead'])
 			<th class="border-bottom border-top border-dark p-2 text-center">Preço</th>
-			@if($setting_pdf->show_item_discount)
+			@if($setting_pdf_discount->show)
 			<th class="border-bottom border-top border-dark p-2 text-center">Desc</th>
 			@endif
-			@if($setting_pdf->show_item_addition)
+			@if($setting_pdf_addition->show)
 			<th class="border-bottom border-top border-dark p-2 text-center">Acres</th>
 			@endif
-			@if($setting_pdf->show_item_taxes)
+			@if($setting_pdf_taxes->show)
 			<th class="border-bottom border-top border-dark p-2 text-center">Impostos</th>
 			@endif
 			<th class="border-bottom border-top border-dark p-2 text-center">Quant</th>
@@ -30,21 +31,22 @@
 	<tbody>
 		@foreach($order->items_stock_now as $item)
 		<tr>
-			@if($setting_pdf->show_item_image)
+			@if($setting_pdf_image->show)
 			<td class="border-bottom border-left border-dark p-2">
 				<img src="{{ url($item->item_product->image) }}" class="width-75">
 			</td>
 			@endif
-			<td class="border-bottom border-dark {{ (!$setting_pdf->show_item_image)?'border-left':'' }} p-2">{{ $item->item_product->sku }}</td>
+			<td class="border-bottom border-dark {{ (!$setting_pdf_image->show)?'border-left':'' }} p-2">{{ $item->item_product->sku }}</td>
 			<td class="border-bottom border-dark p-2">{{ $item->item_product->description }}</td>
+			@loader(['loader_path' => 'pdf.items.tr'])
 			<td class="border-bottom border-dark text-center p-2">@currency($item->price)</td>
-			@if($setting_pdf->show_item_discount)
+			@if($setting_pdf_discount->show)
 			<td class="border-bottom border-dark text-center p-2">@currency($item->discount_value)</td>
 			@endif
-			@if($setting_pdf->show_item_addition)
+			@if($setting_pdf_addition->show)
 			<td class="border-bottom border-dark text-center p-2">@currency($item->addition_value)</td>
 			@endif
-			@if($setting_pdf->show_item_taxes)
+			@if($setting_pdf_taxes->show)
 			<td class="border-bottom border-dark text-center p-2">@currency($item->tax_value)<br><small>(ipi)</small></td>
 			@endif
 			<td class="border-bottom border-dark text-center p-2">{{ $item->item_product_stock_now_after->qty_now }}</td>
@@ -55,7 +57,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th class="border-bottom border-dark border-left p-2" colspan="{{ 7-$count_hidden_columns }}">Totais</th>
+			<th class="border-bottom border-dark border-left p-2" colspan="{{ 3+$count_show_columns }}">Totais</th>
 			<th class="border-bottom border-dark p-2 text-center">{{ $order->total_units_now }}</th>
 			<th class="border-bottom border-dark  p-2 text-center">@currency($order->total_now)</th>
 			<th class="border-bottom border-dark border-right p-2 text-center"></th>
@@ -68,24 +70,24 @@
 <table class="w-100 mb-3">
 	<thead>
 		<tr>
-			<th  colspan="{{ 10-$count_hidden_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Futuro</th>
+			<th  colspan="{{ 6+$count_show_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Futuro</th>
 		</tr>
 	</thead>
 	<thead>
 		<tr>
-			@if($setting_pdf->show_item_image)
+			@if($setting_pdf_image->show)
 			<th class="border-bottom border-top border-dark border-left p-2">Img</th>
 			@endif
-			<th class="border-bottom border-top border-dark {{ (!$setting_pdf->show_item_image)?'border-left':'' }} p-2">Ref</th>
+			<th class="border-bottom border-top border-dark {{ (!$setting_pdf_image->show)?'border-left':'' }} p-2">Ref</th>
 			<th class="border-bottom border-top border-dark p-2">Descrição</th>
 			<th class="border-bottom border-top border-dark p-2 text-center">Preço</th>
-			@if($setting_pdf->show_item_discount)
+			@if($setting_pdf_discount->show)
 			<th class="border-bottom border-top border-dark p-2 text-center">Desc</th>
 			@endif
-			@if($setting_pdf->show_item_addition)
+			@if($setting_pdf_addition->show)
 			<th class="border-bottom border-top border-dark p-2 text-center">Acres</th>
 			@endif
-			@if($setting_pdf->show_item_taxes)
+			@if($setting_pdf_taxes->show)
 			<th class="border-bottom border-top border-dark p-2 text-center">Impostos</th>
 			@endif
 			<th class="border-bottom border-top border-dark p-2 text-center">Quant</th>
@@ -96,21 +98,21 @@
 	<tbody>
 		@foreach($order->items_stock_after as $item)
 		<tr>
-			@if($setting_pdf->show_item_image)
+			@if($setting_pdf_image->show)
 			<td class="border-bottom border-left border-dark p-2">
 				<img src="{{ url($item->item_product->image) }}" class="width-75">
 			</td>
 			@endif
-			<td class="border-bottom border-dark {{ (!$setting_pdf->show_item_image)?'border-left':'' }} p-2">{{ $item->item_product->sku }}</td>
+			<td class="border-bottom border-dark {{ (!$setting_pdf_image->show)?'border-left':'' }} p-2">{{ $item->item_product->sku }}</td>
 			<td class="border-bottom border-dark p-2">{{ $item->item_product->description }}</td>
 			<td class="border-bottom border-dark text-center p-2">@currency($item->price)</td>
-			@if($setting_pdf->show_item_discount)
+			@if($setting_pdf_discount->show)
 			<td class="border-bottom border-dark text-center p-2">@currency($item->discount_value)</td>
 			@endif
-			@if($setting_pdf->show_item_addition)
+			@if($setting_pdf_addition->show)
 			<td class="border-bottom border-dark text-center p-2">@currency($item->addition_value)</td>
 			@endif
-			@if($setting_pdf->show_item_taxes)
+			@if($setting_pdf_taxes->show)
 			<td class="border-bottom border-dark text-center p-2">@currency($item->tax_value)<br><small>(ipi)</small></td>
 			@endif
 			<td class="border-bottom border-dark text-center p-2">{{ $item->item_product_stock_now_after->qty_after }}</td>
@@ -121,7 +123,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th class="border-bottom border-dark border-left p-2" colspan="{{ 7-$count_hidden_columns }}">Totais</th>
+			<th class="border-bottom border-dark border-left p-2" colspan="{{ 3+$count_show_columns }}">Totais</th>
 			<th class="border-bottom border-dark p-2 text-center">{{ $order->total_units_after }}</th>
 			<th class="border-bottom border-dark  p-2 text-center">@currency($order->total_after)</th>
 			<th class="border-bottom border-dark border-right p-2 text-center"></th>
