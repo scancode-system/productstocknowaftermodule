@@ -23,6 +23,7 @@
 			@if($setting_pdf_taxes->show)
 			<th class="border-bottom border-top border-dark p-2 text-center">Impostos</th>
 			@endif
+			<th class="border-bottom border-top border-dark p-2 text-center">Prç Liq</th>
 			<th class="border-bottom border-top border-dark p-2 text-center">Quant</th>
 			<th class="border-bottom border-top border-dark p-2 text-center">Total</th>
 			<th class="border-bottom border-top border-dark border-right p-2 text-center">Entrega</th>
@@ -44,14 +45,26 @@
 			@loader(['loader_path' => 'pdf.items.tr'])
 			<td class="border-bottom border-dark text-center p-2">@currency($item->price)</td>
 			@if($setting_pdf_discount->show)
-			<td class="border-bottom border-dark text-center p-2">@currency($item->discount_value)</td>
+			<td class="border-bottom border-dark text-center p-2">
+				@currency($item->discount_value)<br>
+				<small>(@percentage($item->discount))</small>
+			</td>
 			@endif
 			@if($setting_pdf_addition->show)
-			<td class="border-bottom border-dark text-center p-2">@currency($item->addition_value)</td>
+			<td class="border-bottom border-dark text-center p-2">
+				@currency($item->addition_value)<br>
+				<small>(@percentage($item->addition))</small>
+			</td>
 			@endif
 			@if($setting_pdf_taxes->show)
-			<td class="border-bottom border-dark text-center p-2">@currency($item->tax_value)<br><small>(ipi)</small></td>
+			<td class="border-bottom border-dark text-center p-2">
+				@foreach($item->taxes as $tax)
+				@currency($tax->value)<br>
+				<small>{{ $tax->name }} - @percentage($tax->porcentage)</small>
+				@endforeach
+			</td>
 			@endif
+			<td class="border-bottom border-dark text-center p-2">@currency($item->price_net)</td>
 			<td class="border-bottom border-dark text-center p-2">{{ $item->item_product_stock_now_after->qty_now }}</td>
 			<td class="border-bottom border-dark text-center p-2">@currency($item->total_now)</td>
 			<td class="border-bottom border-right border-dark text-center p-2">{{ $item->item_product_stock_now_after->date_delivery_now?$item->item_product_stock_now_after->date_delivery_now->format('d/m/Y'):'N/A' }}</td>
@@ -93,6 +106,7 @@
 			@if($setting_pdf_taxes->show)
 			<th class="border-bottom border-top border-dark p-2 text-center">Impostos</th>
 			@endif
+			<th class="border-bottom border-top border-dark p-2 text-center">Prç Liq</th>
 			<th class="border-bottom border-top border-dark p-2 text-center">Quant</th>
 			<th class="border-bottom border-top border-dark p-2 text-center">Total</th>
 			<th class="border-bottom border-top border-dark border-right p-2 text-center">Entrega</th>
@@ -113,14 +127,26 @@
 			</td>
 			<td class="border-bottom border-dark text-center p-2">@currency($item->price)</td>
 			@if($setting_pdf_discount->show)
-			<td class="border-bottom border-dark text-center p-2">@currency($item->discount_value)</td>
+			<td class="border-bottom border-dark text-center p-2">
+				@currency($item->discount_value)<br>
+				<small>(@percentage($item->discount))</small>
+			</td>
 			@endif
 			@if($setting_pdf_addition->show)
-			<td class="border-bottom border-dark text-center p-2">@currency($item->addition_value)</td>
+			<td class="border-bottom border-dark text-center p-2">
+				@currency($item->addition_value)<br>
+				<small>(@percentage($item->addition))</small>
+			</td>
 			@endif
 			@if($setting_pdf_taxes->show)
-			<td class="border-bottom border-dark text-center p-2">@currency($item->tax_value)<br><small>(ipi)</small></td>
+			<td class="border-bottom border-dark text-center p-2">
+				@foreach($item->taxes as $tax)
+				@currency($tax->value)<br>
+				<small>{{ $tax->name }} - @percentage($tax->porcentage)</small>
+				@endforeach
+			</td>
 			@endif
+			<td class="border-bottom border-dark text-center p-2">@currency($item->price_net)</td>
 			<td class="border-bottom border-dark text-center p-2">{{ $item->item_product_stock_now_after->qty_after }}</td>
 			<td class="border-bottom border-dark text-center p-2">@currency($item->total_after)</td>
 			<td class="border-bottom border-right border-dark text-center p-2">{{ $item->item_product_stock_now_after->date_delivery_now?$item->item_product_stock_now_after->date_delivery_now->format('d/m/Y'):'N/A' }}</td>
