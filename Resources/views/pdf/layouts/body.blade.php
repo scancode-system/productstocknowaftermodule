@@ -2,7 +2,7 @@
 <table class="w-100 mb-3">
 	<thead>
 		<tr>
-			<th  colspan="{{ 6+$count_show_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Atual</th>
+			<th  colspan="{{ 7+$count_show_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Atual</th>
 		</tr>
 	</thead>
 	<thead>
@@ -73,7 +73,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th class="border-bottom border-dark border-left p-2" colspan="{{ 3+$count_show_columns }}">Totais</th>
+			<th class="border-bottom border-dark border-left p-2" colspan="{{ 4+$count_show_columns }}">Totais</th>
 			<th class="border-bottom border-dark p-2 text-center">{{ $order->total_units_now }}</th>
 			<th class="border-bottom border-dark  p-2 text-center">@currency($order->total_now)</th>
 			<th class="border-bottom border-dark border-right p-2 text-center"></th>
@@ -86,7 +86,7 @@
 <table class="w-100 mb-3">
 	<thead>
 		<tr>
-			<th  colspan="{{ 6+$count_show_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Futuro</th>
+			<th  colspan="{{ 7+$count_show_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Futuro</th>
 		</tr>
 	</thead>
 	<thead>
@@ -149,13 +149,13 @@
 			<td class="border-bottom border-dark text-center p-2">@currency($item->price_net)</td>
 			<td class="border-bottom border-dark text-center p-2">{{ $item->item_product_stock_now_after->qty_after }}</td>
 			<td class="border-bottom border-dark text-center p-2">@currency($item->total_after)</td>
-			<td class="border-bottom border-right border-dark text-center p-2">{{ $item->item_product_stock_now_after->date_delivery_now?$item->item_product_stock_now_after->date_delivery_now->format('d/m/Y'):'N/A' }}</td>
+			<td class="border-bottom border-right border-dark text-center p-2">{{ $item->item_product_stock_now_after->date_delivery_after?$item->item_product_stock_now_after->date_delivery_after->format('d/m/Y'):'N/A' }}</td>
 		</tr> 
 		@endforeach
 	</tbody>
 	<tfoot>
 		<tr>
-			<th class="border-bottom border-dark border-left p-2" colspan="{{ 3+$count_show_columns }}">Totais</th>
+			<th class="border-bottom border-dark border-left p-2" colspan="{{ 4+$count_show_columns }}">Totais</th>
 			<th class="border-bottom border-dark p-2 text-center">{{ $order->total_units_after }}</th>
 			<th class="border-bottom border-dark  p-2 text-center">@currency($order->total_after)</th>
 			<th class="border-bottom border-dark border-right p-2 text-center"></th>
