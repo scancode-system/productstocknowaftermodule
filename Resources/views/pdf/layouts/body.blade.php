@@ -4,8 +4,6 @@
 		<tr>
 			<th  colspan="{{ 7+$count_show_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Atual</th>
 		</tr>
-	</thead>
-	<thead>
 		<tr>
 			@if($setting_pdf_image->show)
 			<th class="border-bottom border-top border-dark border-left p-2">Img</th>
@@ -88,14 +86,13 @@
 		<tr>
 			<th  colspan="{{ 7+$count_show_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Futuro</th>
 		</tr>
-	</thead>
-	<thead>
 		<tr>
 			@if($setting_pdf_image->show)
 			<th class="border-bottom border-top border-dark border-left p-2">Img</th>
 			@endif
 			<th class="border-bottom border-top border-dark {{ (!$setting_pdf_image->show)?'border-left':'' }} p-2">Ref</th>
 			<th class="border-bottom border-top border-dark p-2">Descrição</th>
+			@loader(['loader_path' => 'pdf.items.thead'])
 			<th class="border-bottom border-top border-dark p-2 text-center">Preço</th>
 			@if($setting_pdf_discount->show)
 			<th class="border-bottom border-top border-dark p-2 text-center">Desc</th>
@@ -125,6 +122,7 @@
 				{{ $item->item_product->description }}
 				<small class="text-info">{{ $item->observation }}</small>
 			</td>
+			@loader(['loader_path' => 'pdf.items.tr'])
 			<td class="border-bottom border-dark text-center p-2">@currency($item->price)</td>
 			@if($setting_pdf_discount->show)
 			<td class="border-bottom border-dark text-center p-2">
