@@ -15,6 +15,8 @@ class InsertPdfLayoutsRecordsProductStockNowAfter extends Migration
     public function up()
     {
         PdfLayoutRepository::create(['title' => 'Estoque Atual e Futuro', 'description' => 'Agrupamento dos items do pedido por estoque atual e estoque futuro.', 'path' => 'productstocknowafter::pdf.order']);
+
+        PdfLayoutRepository::create(['title' => 'Agrupamento - Data', 'description' => 'Agrupamento dos items do pedido por datas.', 'path' => 'productstocknowafter::pdf.data.order']);
     }
 
     /**
@@ -25,6 +27,7 @@ class InsertPdfLayoutsRecordsProductStockNowAfter extends Migration
     public function down()
     {
        PdfLayoutRepository::deleteByTitle('Estoque Atual e Futuro');
+       PdfLayoutRepository::deleteByTitle('Agrupamento - Data');
    }
 }
  
