@@ -14,6 +14,11 @@ class Order extends OrderBase
 	use HasDynamicRelation;
 
 
+	public function items()
+	{
+		return $this->hasMany(Item::class);
+	}
+
 	public function items_stock_now()
 	{
 		return $this->hasMany(Item::class)->whereHas('item_product_stock_now_after', function($query){
