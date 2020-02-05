@@ -15,6 +15,11 @@
 
 	.w-65{width: 65%}
 
+.page {
+		overflow: hidden;
+		page-break-after: always;
+	}
+
 	.fs-15{font-size: 15px;}
 	.fs-20{font-size: 20px;}
 	.fs-25{font-size: 25px;}

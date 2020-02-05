@@ -2,7 +2,7 @@
 <table class="w-100 mb-3">
 	<thead>
 		<tr>
-			<th  colspan="{{ 6+$count_show_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Items do Estoque Atual</th>
+			<th  colspan="{{ 6+$count_show_columns }}" class="border-bottom border-top border-dark border-left border-right p-2">Itens do Estoque Atual</th>
 		</tr>
 		<tr>
 			@if($setting_pdf_image->show)
