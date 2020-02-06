@@ -21,7 +21,7 @@ class ReportProductStockNowAfter implements FromCollection, WithStrictNullCompar
     }
 
     private function header(){
-        return [['Referência', 'Descrição', 'Categoria', 'Preço', 'Unidades Atual Restantes', 'Unidades Vendidas Atual', 'Total Bruto Atual', 'Total de Descontos Atual', 'Total de Acréscimos Atual', 'Total Final Atual', 'Unidades Futuras Restantes', 'Unidades Vendidas Futuro', 'Total Bruto Futuro', 'Total de Descontos Futuro', 'Total de Acréscimos Futuro', 'Total Final Futuro',  'Unidades Vendidas', 'Total Bruto', 'Total de Descontos', 'Total de Acréscimos', 'Total Final']];
+        return [['Referência', 'Descrição', 'Categoria', 'Preço', 'Unidades Atual Disponibilizada', 'Unidades Vendidas Atual', 'Unidades Atual Restantes', 'Data Entrega Atual', 'Total Bruto Atual', 'Total de Descontos Atual', 'Total de Acréscimos Atual', 'Total Final Atual', 'Unidades Futura Disponibilizada', 'Unidades Vendidas Futuro', 'Unidades Futuras Restantes', 'Data Entrega Futura', 'Total Bruto Futuro', 'Total de Descontos Futuro', 'Total de Acréscimos Futuro', 'Total Final Futuro',  'Unidades Vendidas', 'Total Bruto', 'Total de Descontos', 'Total de Acréscimos', 'Total Final']];
     }
 
 
@@ -35,14 +35,18 @@ class ReportProductStockNowAfter implements FromCollection, WithStrictNullCompar
                 'descricao' => $product->description,
                 'categoria' => $product->category,
                 'preco' => $product->price,
-                'qty_left_now' => $product->product_stock_now_after->left_now,
+                'available_now' => $product->product_stock_now_after->available_now,
                 'qty_sold_now' => 0,
+                'qty_left_now' => $product->product_stock_now_after->left_now,
+                'date_delivery_now' => $product->product_stock_now_after->date_delivery_now,
                 'total_gross_now' => 0,
                 'total_discount_value_now' => 0,
                 'total_addition_value_now' => 0,
                 'total_now' => 0,
-                'qty_left_after' => $product->product_stock_now_after->left_after,
+                'available_after' => $product->product_stock_now_after->available_after,
                 'qty_sold_after' => 0,
+                'qty_left_after' => $product->product_stock_now_after->left_after,
+                'date_delivery_after' => $product->product_stock_now_after->date_delivery_after,
                 'total_gross_after' => 0,
                 'total_discount_value_after' => 0,
                 'total_addition_value_after' => 0,
