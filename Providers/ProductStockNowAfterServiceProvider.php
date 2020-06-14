@@ -9,6 +9,15 @@ use Illuminate\Database\Eloquent\Factory;
 class ProductStockNowAfterServiceProvider extends ServiceProvider
 {
     /**
+     * @var string $moduleName
+     */
+    protected $moduleName = 'ProductStockNowAfter';
+
+    /**
+     * @var string $moduleNameLower
+     */
+    protected $moduleNameLower = 'productstocknowafter';
+    /**
      * Boot the application events.
      *
      * @return void
@@ -41,7 +50,17 @@ class ProductStockNowAfterServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/productstocknowafter');
+        $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
+
+        $sourcePath = module_path($this->moduleName, 'Resources/views');
+
+        $this->publishes([
+            $sourcePath => $viewPath
+        ], ['views', $this->moduleNameLower . '-module-views']);
+
+        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
+
+        /*$viewPath = resource_path('views/modules/productstocknowafter');
 
         $sourcePath = __DIR__.'/../Resources/views';
 
@@ -51,7 +70,7 @@ class ProductStockNowAfterServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/productstocknowafter';
-        }, \Config::get('view.paths')), [$sourcePath]), 'productstocknowafter');
+        }, \Config::get('view.paths')), [$sourcePath]), 'productstocknowafter');*/
     }
 
 
@@ -63,5 +82,16 @@ class ProductStockNowAfterServiceProvider extends ServiceProvider
     public function provides()
     {
         return [];
+    }
+
+    private function getPublishableViewPaths(): array
+    {
+        $paths = [];
+        foreach (\Config::get('view.paths') as $path) {
+            if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
+                $paths[] = $path . '/modules/' . $this->moduleNameLower;
+            }
+        }
+        return $paths;
     }
 }
