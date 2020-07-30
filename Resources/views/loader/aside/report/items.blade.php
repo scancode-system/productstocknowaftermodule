@@ -1,1 +1,0 @@
-<a href="{{ route('productstocknowafter.report.items') }}" class="list-group-item list-group-item-accent-dark list-group-item-divider list-group-item-action">Atual e Futuro</a>
